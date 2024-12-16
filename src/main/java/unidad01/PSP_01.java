@@ -20,8 +20,6 @@ public class PSP_01 {
     private static final String OS_MAC = "mac";
 
     /**
-     * asdf asdñfl añsdlfjk añsldfjk asdas dfahlskd fjasdf
-     * asldfkh alskdfh asldkjf asd
      * 
      * @param args 
      */
