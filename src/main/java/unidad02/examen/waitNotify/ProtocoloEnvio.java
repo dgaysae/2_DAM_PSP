@@ -67,7 +67,7 @@ public class ProtocoloEnvio implements Runnable {
      */
     @Override
     public void run() {
-        while (!Thread.currentThread().isInterrupted()) {
+        while (!t.isInterrupted()) {
             synchronized (paquete) {
                 if (!paquete.estaCompleto()) {
                     try {
