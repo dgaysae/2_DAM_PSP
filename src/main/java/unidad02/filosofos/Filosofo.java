@@ -7,7 +7,7 @@ import java.util.concurrent.Semaphore;
  * Se ha añadido un punto adicional: los filósofos tomarán sólo 3 platos.
  * Cuando hayan comido 3 veces, finalizarán.
  * 
- * @author Alejandro
+ * @author Alejandro López Martínez
  */
 public class Filosofo implements Runnable {
     /**

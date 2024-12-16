@@ -8,7 +8,7 @@ import java.util.concurrent.Semaphore;
  * Esta clase sirve para configurar el escenario. Es decir, los filósofos que se
  * van a sentar a cenar y los respectivos palillos.
  *
- * @author Alejandro
+ * @author Alejandro López Martínez
  */
 public class Mesa {
 
