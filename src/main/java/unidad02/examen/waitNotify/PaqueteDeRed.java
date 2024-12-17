@@ -88,12 +88,8 @@ public class PaqueteDeRed {
      */
     @Override
     public String toString() {
-        String msg = "(";
-        for (String dato : listaDatosDelPaquete) {
-            msg += dato + ", ";
-        }
-        msg += ")";
-
-        return msg;
+        return "PaqueteDeRed {\nlistaDatosDelPaquete="
+                + listaDatosDelPaquete
+                + "\n}";
     }
 }
