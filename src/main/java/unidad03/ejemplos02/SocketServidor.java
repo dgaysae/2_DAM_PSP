@@ -27,7 +27,7 @@ public class SocketServidor {
 
             System.out.println("Conexión recibida");
             InputStream is = socketCliente.getInputStream();
-            OutputStream os = socketCliente.getOutputStream();
+            //OutputStream os = socketCliente.getOutputStream();
 
             byte[] mensaje = new byte[25];
             is.read(mensaje);
