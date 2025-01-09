@@ -14,9 +14,8 @@ import java.net.Socket;
 public class SocketServidor {
 
     public static void main(String[] args) {
-        try {
+        try (ServerSocket serverSocket = new ServerSocket()) {
             System.out.println("Creando socket servidor");
-            ServerSocket serverSocket = new ServerSocket();
 
             System.out.println("Realizando el bind");
             InetSocketAddress addr = new InetSocketAddress("localhost", 5555);
@@ -24,11 +23,11 @@ public class SocketServidor {
 
             System.out.println("Aceptando conexiones");
 
-            Socket newSocket = serverSocket.accept();
+            Socket socketCliente = serverSocket.accept();
 
             System.out.println("Conexión recibida");
-            InputStream is = newSocket.getInputStream();
-            OutputStream os = newSocket.getOutputStream();
+            InputStream is = socketCliente.getInputStream();
+            OutputStream os = socketCliente.getOutputStream();
 
             byte[] mensaje = new byte[25];
             is.read(mensaje);
@@ -37,11 +36,10 @@ public class SocketServidor {
 
             System.out.println("Cerrando el nuevo socket");
 
-            newSocket.close();
+            socketCliente.close();
 
             System.out.println("Cerrando el socket servidor");
 
-            serverSocket.close();
             System.out.println("Terminado");
         } catch (IOException e) {
             e.printStackTrace();
