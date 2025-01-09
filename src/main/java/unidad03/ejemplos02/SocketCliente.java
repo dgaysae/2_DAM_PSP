@@ -25,7 +25,6 @@ public class SocketCliente {
                     new InetSocketAddress(STRING_HOST, INT_PUERTO);
             socketCliente.connect(direccionServidor);
 
-            InputStream recibirDeServidor = socketCliente.getInputStream();
             OutputStream enviarAServidor = socketCliente.getOutputStream();
             
             System.out.println("Enviando mensaje");
