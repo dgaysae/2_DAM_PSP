@@ -16,12 +16,12 @@ public class Ejemplo02InetAddress {
             System.out.println("Obtener IP - InetAddress");
             System.out.println("***********************");
             InetAddress ip = InetAddress.getByName(HOST_NAME);
-            System.out.printf("Dirección de %s: %s", HOST_NAME, ip.getHostAddress());
+            System.out.printf("Dirección de %s: %s%n", HOST_NAME, ip.getHostAddress());
 
             System.out.println();
 
             ip = InetAddress.getByName(HOST_ADDRESS);
-            System.out.printf("Dominio de %s: %s", HOST_ADDRESS, ip.getHostName());
+            System.out.printf("Dominio de %s: %s%n", HOST_ADDRESS, ip.getHostName());
 
             System.out.println();
             System.out.println();
@@ -31,7 +31,7 @@ public class Ejemplo02InetAddress {
             System.out.println("***********************");
 
             ip = socket.getInetAddress();
-            System.out.printf("Dirección de %s: %s", HOST_NAME, ip.getHostAddress());
+            System.out.printf("Dirección de %s: %s%n", HOST_NAME, ip.getHostAddress());
 
             System.out.println();
             System.out.println();
@@ -40,7 +40,7 @@ public class Ejemplo02InetAddress {
             System.out.println("***********************");
 
             ip = InetAddress.getLocalHost();
-            System.out.printf("Localhost %s: %s", ip.getHostName(), ip.getHostAddress());
+            System.out.printf("Localhost %s: %s%n", ip.getHostName(), ip.getHostAddress());
         } catch (UnknownHostException ex) {
             System.out.println("ERROR! No se ha podido conectar al host indicado: " + ex.getMessage());
         } catch (IOException ex) {
