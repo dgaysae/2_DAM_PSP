@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  * 
  * @author diego
  */
-public class Main {
+public class Ejemplo01InetAddress {
     public static void main(String[] args) {
         String[] direcciones = {
             "www.iescelia.org",
@@ -26,7 +26,7 @@ public class Main {
                 System.out.println("Dirección: " + direccion);
             }
         } catch (UnknownHostException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Ejemplo01InetAddress.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
