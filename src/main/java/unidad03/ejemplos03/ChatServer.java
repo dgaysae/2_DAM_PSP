@@ -8,21 +8,25 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ChatServer {
+    public static final String COMMAND_CHAT_END = "/fin";
+    public static final String SERVER_HOSTNAME = "localhost";
+    public static final int SERVER_PORT = 5555;
+
     public static void main(String[] args) {
         try {
             ServerSocket servidor = new ServerSocket(12345);
             System.out.println("Servidor iniciado en el puerto 12345");
 
-            Socket cliente = servidor.accept(); // Acepta una conexión
+            Socket cliente = servidor.accept();
             System.out.println("Un cliente se ha conectado");
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
-            PrintWriter out = new PrintWriter(cliente.getOutputStream(), true);
+            BufferedReader recibir = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
+            PrintWriter enviar = new PrintWriter(cliente.getOutputStream(), true);
 
             String mensaje;
-            while ((mensaje = in.readLine()) != null) {
+            while ((mensaje = recibir.readLine()) != null) {
                 System.out.println("Cliente: " + mensaje);
-                out.println("Servidor: Mensaje recibido");
+                enviar.println("mensaje recibido");
             }
 
             cliente.close();
