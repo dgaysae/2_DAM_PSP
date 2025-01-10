@@ -1,4 +1,4 @@
-package unidad03.ejemplos04;
+package unidad03.ejemplos03;
 
 import java.io.BufferedReader;
 import java.io.IOException;
