@@ -14,11 +14,11 @@ public class ChatServer {
 
     public static void main(String[] args) {
         try {
-            ServerSocket servidor = new ServerSocket(12345);
-            System.out.println("Servidor iniciado en el puerto 12345");
+            ServerSocket servidor = new ServerSocket(SERVER_PORT);
+            System.out.printf("Servidor iniciado en el puerto %d%n", SERVER_PORT);
 
             Socket cliente = servidor.accept();
-            System.out.println("Un cliente se ha conectado");
+            System.out.println("Cliente conectado");
 
             BufferedReader recibir = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
             PrintWriter enviar = new PrintWriter(cliente.getOutputStream(), true);
