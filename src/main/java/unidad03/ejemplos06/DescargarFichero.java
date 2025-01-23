@@ -1,37 +1,60 @@
 package unidad03.ejemplos06;
 
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
+import java.io.*;
+import java.net.*;
 
 /**
- * Vamos a descargar un fichero HTML (una página web) de un servidor usando
- * un objeto URLConnection.
- * Es más sencillo que con los sockets.
+ * Vamos a descargar un fichero HTML (una página web) de un servidor usando sockets.
+ * Para ello lanzaremos una petición GET como la siguiente:
+ *
+ * GET /index.html HTTP/1.1
+ * Host: www.esviernes.com
+ *
  */
 public class DescargarFichero {
-    public static String URL = "https://esviernes.com/";
+    public static String URL = "www.esviernes.com";
     public static String FILE_NAME = "index.html";
+    public static int PUERTO = 80;
     public static int BUFFER_SIZE = 1024;
 
-    public static void main(String[] args) throws Exception {
-        URL obj = new URL(URL + FILE_NAME);
-        URLConnection conectarAWeb = obj.openConnection();
+    public static void main(String[] args) {
+        // Nos conectamos con un socket a una web.
+        try (Socket socket = new Socket(URL, PUERTO);) {
+            OutputStream enviarAlServidor = socket.getOutputStream();
 
-        InputStream leerDeWeb = conectarAWeb.getInputStream();
-        FileOutputStream escribirEnFichero = new FileOutputStream(FILE_NAME);
+            // Le decimos al servidor web qué petición queremos realizar:
+            String request = "GET /" + FILE_NAME
+                    + " HTTP/1.1\r\n"
+                    + "Host: " + URL + "\r\n" + "\r\n";
 
-        byte[] buffer = new byte[BUFFER_SIZE];
-        int length;
-        while ((length = leerDeWeb.read(buffer)) > 0) {
-            escribirEnFichero.write(buffer, 0, length);
+            enviarAlServidor.write(request.getBytes());
+
+            System.out.println("Petición enviada: " + request);
+
+            BufferedReader recibirDeServidor = new BufferedReader(
+                    new InputStreamReader(socket.getInputStream())
+            );
+
+            String line;
+            boolean contenido = false;
+            FileOutputStream enviarAFichero = new FileOutputStream(FILE_NAME);
+
+            while ((line = recibirDeServidor.readLine()) != null) {
+                if (line.isEmpty()) {
+                    contenido = true;
+                } else if (contenido) {
+                    enviarAFichero.write(line.getBytes());
+                }
+            }
+
+            // Cerrar los streams y el socket
+            enviarAFichero.close();
+            recibirDeServidor.close();
+            socket.close();
+
+            System.out.println("Fichero descargado correctamente: " + FILE_NAME);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-
-        // Cerrar los streams
-        leerDeWeb.close();
-        escribirEnFichero.close();
-
-        System.out.println("Fichero descargado correctamente: " + FILE_NAME);
     }
 }
