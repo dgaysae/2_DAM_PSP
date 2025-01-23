@@ -2,7 +2,6 @@ package unidad03.ejemplos02;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -30,9 +29,11 @@ public class SocketServidor {
             //OutputStream os = socketCliente.getOutputStream();
 
             byte[] mensaje = new byte[25];
-            is.read(mensaje);
+            int numBytesLeidos = is.read(mensaje);
 
-            System.out.println("Mensaje recibido: " + new String(mensaje));
+            System.out.printf("Mensaje recibido: %s %n Bytes: %d",
+                    new String(mensaje),
+                    numBytesLeidos);
 
             System.out.println("Cerrando el nuevo socket");
 

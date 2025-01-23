@@ -8,17 +8,28 @@ import java.net.Socket;
 
 public class ChatCliente {
     public static void main(String[] args) throws IOException {
-        Socket cliente = new Socket("localhost", 12345); // Conecta al servidor en el puerto 12345
+        Socket cliente = new Socket(
+                ChatServer.SERVER_HOSTNAME,
+                ChatServer.SERVER_PORT
+        );
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
-        PrintWriter out = new PrintWriter(cliente.getOutputStream(), true);
+        BufferedReader recibir = new BufferedReader(
+                new InputStreamReader(cliente.getInputStream())
+        );
+        PrintWriter enviar = new PrintWriter(
+                cliente.getOutputStream(),
+                true
+        );
 
-        BufferedReader teclado = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader leerTeclado = new BufferedReader(
+                new InputStreamReader(System.in)
+        );
 
         String mensaje;
-        while ((mensaje = teclado.readLine()) != null) {
-            out.println(mensaje);
-            System.out.println("Servidor: " + in.readLine());
+        while ((mensaje = leerTeclado.readLine()) != null
+                && !mensaje.equals(ChatServer.COMMAND_CHAT_END)) {
+            enviar.println(mensaje);
+            System.out.println("Servidor: " + recibir.readLine());
         }
 
         cliente.close();
