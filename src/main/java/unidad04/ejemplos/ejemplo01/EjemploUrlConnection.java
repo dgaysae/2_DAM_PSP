@@ -11,9 +11,9 @@ public class EjemploUrlConnection {
         try {
             URL url = new URL("https://www.google.com/search");
             URLConnection connection = url.openConnection();
-            InputStream is = connection.getInputStream();
+            InputStream leerWeb = connection.getInputStream();
             int byteLeido;
-            while ((byteLeido = is.read()) != -1) {
+            while ((byteLeido = leerWeb.read()) != -1) {
                 System.out.print((char) byteLeido);
             }
 
