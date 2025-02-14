@@ -7,6 +7,9 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+/**
+ * Vamos a ver un ejemplo de cómo consumir información de una API Rest.
+ */
 public class Main {
     public static void main(String[] args) throws Exception {
         // Crear un cliente HttpClient
