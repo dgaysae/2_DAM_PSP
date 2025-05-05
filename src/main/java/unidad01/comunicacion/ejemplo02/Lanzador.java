@@ -2,6 +2,12 @@ package unidad01.comunicacion.ejemplo02;
 
 import java.io.File;
 
+/**
+ * Fuente: https://dam.org.es/comunicacion-entre-procesos/
+ *
+ * @see <a href="https://oscarmaestre.github.io/servicios/textos/tema1.html#comunicacion-entre-procesos">Comunicación entre procesos</a>
+ * @author Óscar Maestre
+ */
 public class Lanzador {
     public void lanzarSumador(Integer n1, Integer n2, String ficheroResultado){
         String clase = "Sumador";

@@ -9,6 +9,9 @@ import java.io.PrintWriter;
  * Este ejemplo es una muestra de cómo pueden comunicarse varios procesos.
  * En este caso todos ellos son programas en java, pero podrían ser scripts en shell de Linux, etc.
  * El programa funciona compilando todos los ficheros java (Padre, Hijo1 e Hijo2) y lanzando el padre.
+ *
+ * IMPORTANTE: si se ejecuta este programa desde un IDE es posible que no funcione. Lo mejor es crear los tres ficheros
+ * en un directorio usando un editor sencillo y compilarlos y ejecutarlos desde línea de comando.
  */
 public class Padre {
     public static void main(String[] args) {
