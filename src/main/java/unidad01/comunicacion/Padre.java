@@ -17,16 +17,16 @@ public class Padre {
         //******************************************
         ProcessBuilder pb1 = new ProcessBuilder("java", "Hijo1");
         ProcessBuilder pb2 = new ProcessBuilder("java", "Hijo2");
-        Process hijo1 = pb1.start();
-        Process hijo2 = pb2.start();
+        Process procesoHijo1 = pb1.start();
+        Process procesoHijo2 = pb2.start();
 
         //******************************************
         //  Establecemos los flujos de entrada y salida con esos procesos
         //******************************************
-        PrintWriter hijo1Out = new PrintWriter(hijo1.getOutputStream(), true);
-        BufferedReader hijo1In = new BufferedReader(new InputStreamReader(hijo1.getInputStream()));
-        PrintWriter hijo2Out = new PrintWriter(hijo2.getOutputStream(), true);
-        BufferedReader hijo2In = new BufferedReader(new InputStreamReader(hijo2.getInputStream()));
+        PrintWriter enviarAHijo1 = new PrintWriter(procesoHijo1.getOutputStream(), true);
+        BufferedReader recibirDeHijo1 = new BufferedReader(new InputStreamReader(procesoHijo1.getInputStream()));
+        PrintWriter enviarAHijo2 = new PrintWriter(procesoHijo2.getOutputStream(), true);
+        BufferedReader recibirDeHijo2 = new BufferedReader(new InputStreamReader(procesoHijo2.getInputStream()));
 
         //******************************************
         //  Comunicación con los hijos
@@ -34,22 +34,22 @@ public class Padre {
         // Enviar datos al primer hijo
         String mensajePadre = "Hola, Hijo1. Este es un mensaje del padre.";
         System.out.println("Padre envía a Hijo1: " + mensajePadre);
-        hijo1Out.println(mensajePadre);
+        enviarAHijo1.println(mensajePadre);
 
         // Recibir datos del primer hijo...
-        String mensajeHijo1 = hijo1In.readLine();
+        String mensajeHijo1 = recibirDeHijo1.readLine();
         System.out.println("Padre recibe de Hijo1: " + mensajeHijo1);
         // ... y enviarlos al segundo hijo
         System.out.println("Padre envía a Hijo2: " + mensajeHijo1);
-        hijo2Out.println(mensajeHijo1);
+        enviarAHijo2.println(mensajeHijo1);
 
         // Recibir datos del segundo hijo
-        String mensajeHijo2 = hijo2In.readLine();
+        String mensajeHijo2 = recibirDeHijo2.readLine();
         System.out.println("Padre recibe de Hijo2: " + mensajeHijo2);
 
         // Esperar a que los hijos terminen
-        int retornoHijo1 = hijo1.waitFor();
-        int retornoHijo2 = hijo2.waitFor();
+        int retornoHijo1 = procesoHijo1.waitFor();
+        int retornoHijo2 = procesoHijo2.waitFor();
 
         System.out.println("Hijo1 terminó con código: " + retornoHijo1);
         System.out.println("Hijo2 terminó con código: " + retornoHijo2);
