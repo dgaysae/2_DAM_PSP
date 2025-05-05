@@ -17,8 +17,9 @@ import java.net.URLConnection;
 public class EjemploUrlConnection01 {
     public static void main(String[] args) {
         try {
-            //URL url = URL("https://www.google.com/search");
-            URL url = URI("https://www.google.com/search").toURL();;
+            URL url = new URL("https://www.google.com/search");
+//            URL url = URI("https://www.google.com/search").toURL();
+
             URLConnection conexion = url.openConnection();
 
             // Tipo de conexión
