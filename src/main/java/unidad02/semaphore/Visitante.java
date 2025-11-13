@@ -12,14 +12,14 @@ public class Visitante implements Runnable {
     Semaphore timbre;
     Semaphore asientos;
     
-    public Visitante(Semaphore semaforo,
-            Semaphore asientos,
+    public Visitante(Semaphore sentarseEnPorche,
+            Semaphore entrarEnCasa,
             String name) {
 //        hilo = new Thread(this, name);
         hilo = new Thread(this);
         hilo.setName(name);
-        this.timbre = semaforo;
-        this.asientos = asientos;
+        this.timbre = entrarEnCasa;
+        this.asientos = sentarseEnPorche;
     }
 
     @Override
@@ -35,15 +35,14 @@ public class Visitante implements Runnable {
             Thread.sleep(1000);
             System.out.println(hilo.getName() + " - Fin tocar timbre");
             timbre.release();
-            
+
             System.out.println(hilo.getName() + " - deja libre un asiento en el porche.");
             System.out.println(hilo.getName() + " - entra en casa.");
             asientos.release();
             
         } catch (InterruptedException ex) {}
-        
-        
-        
+
+        System.out.println(hilo.getName() + " - se marcha");
     }
 
     public void start() {
